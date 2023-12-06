@@ -66,7 +66,12 @@ const AllocationForm = (props) => {
                         id='cost'
                         value={cost}
                         style={{ marginLeft: '2rem' , size: 10}}
-                        onChange={(event) => setCost(event.target.value)}>
+                        onChange={(event) => {
+                            const value = event.target.value;
+                            if (value === '' || /^[0-9]+$/.test(value)) {
+                                setCost(value);
+                            }
+                        }}>
                         </input>
 
                     <button className="btn btn-primary" onClick={submitEvent} style={{ marginLeft: '2rem' }}>
