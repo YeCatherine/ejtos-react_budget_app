@@ -22,6 +22,7 @@ const CurrencySelect = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+  
   useEffect(() => {
     console.log(currency);
   }, [currency]);
@@ -38,17 +39,19 @@ const CurrencySelect = () => {
   const currencyName = currencies[currency];
   
   return (
-    <div className="currency-select-container" ref={wrapperRef}>
-      <div className="currency-select-label" onClick={toggleDropdown}>
-        Currency ({currency} {currencyName})
-        <span className={`arrow ${isOpen ? 'open' : ''}`}></span>
-      </div>
-      {isOpen && (
-        <div className="currency-options">
-          {Object.entries(currencies).map(([curSymbol, curName]) => (
+    <div className="position-relative mx-auto bg-lighter-green rounded" style={{ maxWidth: '200px' }} ref={wrapperRef}>
+    <div 
+      className="currency-select-label d-block text-white rounded py-2 text-center cursor-pointer"
+      onClick={toggleDropdown}
+    >
+      Currency ({currency} {currencyName})
+    </div>
+    {isOpen && (
+      <div className="bg-lighter-green currency-options position-absolute w-100 mt-1 rounded zindex-dropdown border border-dark">
+           {Object.entries(currencies).map(([curSymbol, curName]) => (
             <div
               key={curSymbol}
-              className={`currency-option ${currency === curSymbol ? 'selected' : ''}`}
+              className={`py-2 px-3 cursor-pointer ${currency === curSymbol ? 'bg-white' : ''}`}
               onClick={() => handleCurrencyChange(curSymbol)}
             >
               {curSymbol} {curName}
