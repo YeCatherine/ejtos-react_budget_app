@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.bg-lighter-green {
+  background-color: #94E39A;
+}
+
+.currency-select-label::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid white;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+.currency-select-label.open::after {
+  transform: translateY(-50%) rotateX(180deg);
+}
